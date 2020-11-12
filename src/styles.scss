@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.mat-form-field {
+    width: 100%;
+}
+
+.standard-padding {
+    padding: 16px 8px;
+}
+
+.view {
+    height: 100%;
+    width: 100%;
+}
+
+.scroll {
+    overflow-y: auto;
+}
+
+html, body, .viewport {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+router-outlet.router-flex + * {
+    height: 100%;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.a {
+    cursor: pointer;
+}
+

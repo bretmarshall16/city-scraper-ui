@@ -1,0 +1,71 @@
+<div fxLayout="column" class="view mat-elevation-z8">
+
+  <div class="standard-padding">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+  <mat-divider></mat-divider>
+
+  <div class="scroll" fxFlex>
+
+
+    <table mat-table [dataSource]="dataSource" matSort matSortStart="desc">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
+
+      <ng-container matColumnDef="Rank">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Player </th>
+        <td mat-cell *matCellDef="let element"> {{element.Rank}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Player">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Player </th>
+        <td mat-cell class="purple a" *matCellDef="let element" (click)="goToPlayer(element.Id)"> {{element.Player}}
+        </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="School">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> School </th>
+        <td mat-cell class="a" *matCellDef="let element" (click)="goToSchool(element.SchoolId)"> {{element.School}}
+        </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="total_goals">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Goals </th>
+        <td mat-cell *matCellDef="let element"> {{element.total_goals}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="total_assists">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Assists </th>
+        <td mat-cell *matCellDef="let element"> {{element.total_assists}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="total">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Points </th>
+        <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Goals_Per_Game">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Goals Per Game"> GPG </th>
+        <td mat-cell *matCellDef="let element"> {{element.Goals_Per_Game | number:'.1-2'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Percentage_Games_With_Goal">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Percentage of Games With a Goal"> PGWG</th>
+        <td mat-cell *matCellDef="let element"> {{element.Percentage_Games_With_Goal | number:'.1-2'}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator class="mat-paginator-sticky" [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>
